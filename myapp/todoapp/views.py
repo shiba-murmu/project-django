@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib import messages
-from .models import Note
+from .models import Note 
 # Create your views here.
 
 def login(request):
@@ -10,6 +10,9 @@ def login(request):
 def profile(request):
     # profile function
     return render(request, 'profile.html')
+
+
+
 
 def noteitems(request , id):
     # noteitems function to show single notes
