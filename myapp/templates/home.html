@@ -57,7 +57,7 @@
         <div class="col-md-12">
             {% for todo in todos %}
             <div class="list-group m-3">
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{% url "noteitems" todo.id %}" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1 fw-bold text-primary">{{forloop.counter}}. {{todo.noteheading}}</h5>
                         <small class="text-muted">{{todo.date}}</small>

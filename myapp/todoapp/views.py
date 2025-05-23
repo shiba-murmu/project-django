@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib import messages
 from .models import Note
 # Create your views here.
@@ -10,6 +10,12 @@ def login(request):
 def profile(request):
     # profile function
     return render(request, 'profile.html')
+
+def noteitems(request , id):
+    # noteitems function to show single notes
+    item = get_object_or_404(Note , pk=id) # this function is used to get single note item from the database
+    return render(request, 'noteitems.html', {'item': item})
+
 
 def home(request):
     if request.method == 'POST':
