@@ -3,8 +3,75 @@
 
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            <h3 class="text-center fw-bold text-danger">YOUR TODO APP</h3>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            <form action="{% url 'home' %}" method="post" class="form-inline">
+                {% csrf_token %}
+                <div class="form-group mb-2">
+                    <input type="date" name='date' class='form-control' >
+                </div>
+                <div class="form-group mb-2">
+                    <input class="form-control" name="noteheading" placeholder="Heading of your note" rows="4" cols="50" >
+                </div>
+                <div class="form-group mb-2">
+                    <textarea class="form-control" name="note" placeholder="Write your note here" rows="4" cols="50" required></textarea>
+                </div>
+                <div class="form-group mb-2 ml-2 text-center">
+                    <button type="submit" class="btn btn-primary">Add note</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    {% comment %} error msg {% endcomment %}
+    {% if error %}
+        <div class="position-fixed w-25 top-0 start-0 mt-3 me-3" style='z-index: 1000;'>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endif %}
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="position-fixed w-25 top-0 start-0 mt-3 me-3" style='z-index: 1000;'>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 
+    <div class="row z-index-0">
+
+        {% if todos %}
+        <div class="col-md-12">
+            {% for todo in todos %}
+            <div class="list-group m-3">
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 fw-bold text-primary">{{forloop.counter}}. {{todo.noteheading}}</h5>
+                        <small class="text-muted">{{todo.date}}</small>
+                    </div>
+                    <p class="mb-1">{{todo.note}}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div> 
+        {% else %}
+            <h4 class='text-center mt-5 display-4'>Empty notes</h4>
+        {% endif %}
+         
+    </div>
+</div>
 
 {% endblock  %}

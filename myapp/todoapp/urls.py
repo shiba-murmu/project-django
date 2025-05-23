@@ -1,9 +1,9 @@
 from django.urls import path
-from todoapp.views import home , login , profile
+from . import views
 
 
 urlpatterns = [
-    path('home/', home, name='home'),
-    path('', login, name='login'),
-    path('profile/', profile, name='profile'),
+    path('home/', views.home, name='home'),
+    path('', views.login, name='login'),
+    path('profile/', views.profile, name='profile'),
 ]
