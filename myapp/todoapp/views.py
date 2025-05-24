@@ -1,25 +1,26 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib import messages
 from .models import Note 
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def login(request):
     # login function
     return render(request, 'login.html')
 
+@login_required(login_url='/login/')
 def profile(request):
     # profile function
     return render(request, 'profile.html')
 
 
-
-
+@login_required(login_url='/login/')
 def noteitems(request , id):
     # noteitems function to show single notes
     item = get_object_or_404(Note , pk=id) # this function is used to get single note item from the database
     return render(request, 'noteitems.html', {'item': item})
 
-
+@login_required(login_url='/login/')
 def home(request):
     if request.method == 'POST':
         note = request.POST.get('note', '').strip()
