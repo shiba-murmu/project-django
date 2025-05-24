@@ -10,14 +10,14 @@
     />
   </head>
   <body>
-    <nav class="navbar  navbar-dark justify-content-center bg-dark">
+    <nav class="navbar justify-content-center bg-primary">
       <!-- Navbar content -->
       <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url "home" %}">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="{% url "home" %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          <a class="nav-link text-white" href="{% url 'profile' %}">Profile</a>
         </li>
         {% comment %} <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -25,12 +25,12 @@
         {% if user.is_authenticated %}
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url "logout" %}">Logout</a>
+          <a class="nav-link text-white" href="{% url "logout" %}">Sign out</a>
         </li>
 
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href='{% url "login" %}'>Login</a>
+          <a class="nav-link text-white" href='{% url "login" %}'>Sign in</a>
         </li>
         
         {% endif %}
@@ -44,7 +44,7 @@
       {% endblock %}
     </div>
 
-    <div class="card text-primary text-center bg-dark rounded-0">
+    <div class="card text-white text-center bg-primary rounded-0">
       <div class="card-body">
         <h5 class="card-title">TODO app for your personal use</h5>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>

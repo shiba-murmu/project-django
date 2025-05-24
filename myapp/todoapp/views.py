@@ -10,8 +10,20 @@ def login(request):
 
 @login_required(login_url='/login/')
 def profile(request):
-    # profile function
-    return render(request, 'profile.html')
+    user = request.user # loggined user data
+    firstname = user.first_name
+    lastname = user.last_name
+    username = user.username
+    userEmail = user.email
+    user_joined_date = user.date_joined
+    # returning by this function profile..
+    return render(request, 'profile.html' , {
+        'firstname' : firstname,
+        'lastname' : lastname,
+        'username' : username,
+        'userEmail' : userEmail,
+        'user_joined_date' : user_joined_date
+    })
 
 
 @login_required(login_url='/login/')
@@ -19,6 +31,17 @@ def noteitems(request , id):
     # noteitems function to show single notes
     item = get_object_or_404(Note , pk=id) # this function is used to get single note item from the database
     return render(request, 'noteitems.html', {'item': item})
+
+
+
+@login_required(login_url='/login/')
+def delete_note(request , id) :
+    deleted_note = Note.objects.get(pk=id)
+    deleted_note.delete()
+    messages.success(request, 'Note deleted successfully!')
+    return redirect('home')
+
+
 
 @login_required(login_url='/login/')
 def home(request):

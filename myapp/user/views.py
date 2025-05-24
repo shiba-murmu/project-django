@@ -2,8 +2,13 @@ from django.contrib.auth.models import User
 from django.shortcuts import render , redirect 
 from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
+from django.contrib.auth.decorators import login_required
 import time
 # Create your views here.
+@login_required(login_url='/login/')
+def edit_profile(request) :
+    return render(request, 'editprofile.html')
+
 
 def login_view(request) :
     if request.method == 'POST':
