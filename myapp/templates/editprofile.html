@@ -3,7 +3,49 @@
 {% block title %}Edit profile{% endblock  %}
 
 {% block content %}
-<h1>I am the edit profile page here.</h1>
+<div class="container p-4">
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Update Your Profile</h5>
+
+            <div class="mb-3">
+                <label for="userBio" class="form-label fw-semibold">Bio Description</label>
+                <textarea 
+                    class="form-control" 
+                    id="userBio" 
+                    name="userBio"
+                    rows="5" 
+                    maxlength="150" 
+                    placeholder="Write a short bio (max 150 characters)..."
+                ></textarea>
+                <small id="bioCount" class="text-end d-block text-muted">150 characters remaining</small>
+            </div>
+            <div class="mb-3">
+                <label for="forProfilePhoto" class="form-label fw-semibold">Profile photo</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" id="forProfilePhoto" name="profile_photo" accept='image/*'>
+                    <label class="input-group-text" for="forProfilePhoto">Upload</label>
+                </div>
+                <div class="form-text text-muted">Accepted formats: JPG, PNG, GIF. Max size: 2MB.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Save Changes
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const bioInput = document.getElementById('userBio');
+    const bioCount = document.getElementById('bioCount');
+    const maxLength = 150;
+
+    bioInput.addEventListener('input', function () {
+        const remaining = maxLength - this.value.length;
+        bioCount.textContent = `${remaining} characters remaining`;
+    });
+</script>
 
 
 {% endblock  %}

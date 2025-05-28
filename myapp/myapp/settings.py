@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q^!qwikaf0%iy(&3ocjy+e_ii-gyyx%aonxi-%6_=xs4qi(m!q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # for production only
-# DEBUG = True # for development only
+# DEBUG = False # for production only
+DEBUG = True # for development only
 
 ALLOWED_HOSTS = [
     # 'project-django-production.up.railway.app',  # This will be uncomment when the project is completed..
@@ -132,3 +132,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Automatically expiration's of sessions here...!!!
+SESSION_COOKIE_AGE = 60 # 5 min
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
