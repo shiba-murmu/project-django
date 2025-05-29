@@ -2,10 +2,13 @@ from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib import messages
 from .models import Note 
 from django.contrib.auth.decorators import login_required
+# from django.contrib.auth import authenticate , login , logout
 # Create your views here.
 
 def login(request):
     # login function
+    if request.user.is_authenticated:
+        return redirect('home')
     return render(request, 'login.html')
 
 @login_required(login_url='/login/')
